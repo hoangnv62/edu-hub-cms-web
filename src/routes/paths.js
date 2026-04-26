@@ -6,6 +6,7 @@ export const PATHS = {
   TEACHER: {
     ROOT: '/teacher',
     CLASSES: '/teacher/classes',
+    CLASS_DETAIL: '/teacher/classes/:classId',
     EXERCISES: '/teacher/exercises',
     STUDENTS: '/teacher/students',
     LECTURES: '/teacher/lectures',

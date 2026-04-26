@@ -29,9 +29,6 @@ axiosInstance.interceptors.response.use(
       case 500:
         toast.error('Đã xảy ra lỗi máy chủ. Vui lòng thử lại sau.');
         break;
-      default:
-        if (apiMessage) toast.error(apiMessage);
-        break;
     }
     throw error;
   },

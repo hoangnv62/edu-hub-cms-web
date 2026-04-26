@@ -4,20 +4,19 @@ import {
   ListItemIcon, ListItemText, Toolbar, Typography,
 } from '@mui/material';
 import {
-  DashboardOutlined, ClassOutlined, AssignmentOutlined,
-  MenuBookOutlined, BarChartOutlined,
-} from '@mui/icons-material';
+  LuLayoutDashboard, LuSchool, LuClipboardList, LuBookMarked, LuChartBar,
+} from 'react-icons/lu';
 import DashboardHeader from './DashboardHeader';
 import { PATHS } from '@/routes/paths';
 
 const DRAWER_WIDTH = 240;
 
 const menuItems = [
-  { label: 'Tổng quan', icon: DashboardOutlined, path: PATHS.STUDENT.ROOT },
-  { label: 'Danh sách lớp học', icon: ClassOutlined, path: PATHS.STUDENT.CLASSES },
-  { label: 'Bài tập', icon: AssignmentOutlined, path: PATHS.STUDENT.EXERCISES },
-  { label: 'Bài giảng', icon: MenuBookOutlined, path: PATHS.STUDENT.LECTURES },
-  { label: 'Điểm số', icon: BarChartOutlined, path: PATHS.STUDENT.GRADES },
+  { label: 'Tổng quan', icon: LuLayoutDashboard, path: PATHS.STUDENT.ROOT },
+  { label: 'Danh sách lớp học', icon: LuSchool, path: PATHS.STUDENT.CLASSES },
+  { label: 'Bài tập', icon: LuClipboardList, path: PATHS.STUDENT.EXERCISES },
+  { label: 'Bài giảng', icon: LuBookMarked, path: PATHS.STUDENT.LECTURES },
+  { label: 'Điểm số', icon: LuChartBar, path: PATHS.STUDENT.GRADES },
 ];
 
 const StudentLayout = () => {
@@ -47,8 +46,8 @@ const StudentLayout = () => {
                   onClick={() => navigate(path)}
                   sx={{ borderRadius: 2 }}
                 >
-                  <ListItemIcon sx={{ minWidth: 38 }}>
-                    <Icon fontSize="small" color={active ? 'primary' : 'inherit'} />
+                  <ListItemIcon sx={{ minWidth: 38, color: active ? 'primary.main' : 'text.secondary' }}>
+                    <Icon size={20} />
                   </ListItemIcon>
                   <ListItemText
                     primary={

@@ -4,18 +4,18 @@ import {
   ListItemIcon, ListItemText, Toolbar, Typography,
 } from '@mui/material';
 import {
-  DashboardOutlined, ClassOutlined, AssignmentOutlined, MenuBookOutlined,
-} from '@mui/icons-material';
+  LuLayoutDashboard, LuSchool, LuClipboardList, LuBookMarked,
+} from 'react-icons/lu';
 import DashboardHeader from './DashboardHeader';
 import { PATHS } from '@/routes/paths';
 
 const DRAWER_WIDTH = 240;
 
 const menuItems = [
-  { label: 'Tổng quan', icon: DashboardOutlined, path: PATHS.TEACHER.ROOT },
-  { label: 'Danh sách lớp học', icon: ClassOutlined, path: PATHS.TEACHER.CLASSES },
-  { label: 'Bài tập', icon: AssignmentOutlined, path: PATHS.TEACHER.EXERCISES },
-  { label: 'Bài giảng', icon: MenuBookOutlined, path: PATHS.TEACHER.LECTURES },
+  { label: 'Tổng quan', icon: LuLayoutDashboard, path: PATHS.TEACHER.ROOT },
+  { label: 'Danh sách lớp học', icon: LuSchool, path: PATHS.TEACHER.CLASSES },
+  { label: 'Bài tập', icon: LuClipboardList, path: PATHS.TEACHER.EXERCISES },
+  { label: 'Bài giảng', icon: LuBookMarked, path: PATHS.TEACHER.LECTURES },
 ];
 
 const TeacherLayout = () => {
@@ -45,8 +45,8 @@ const TeacherLayout = () => {
                   onClick={() => navigate(path)}
                   sx={{ borderRadius: 2 }}
                 >
-                  <ListItemIcon sx={{ minWidth: 38 }}>
-                    <Icon fontSize="small" color={active ? 'primary' : 'inherit'} />
+                  <ListItemIcon sx={{ minWidth: 38, color: active ? 'primary.main' : 'text.secondary' }}>
+                    <Icon size={20} />
                   </ListItemIcon>
                   <ListItemText
                     primary={

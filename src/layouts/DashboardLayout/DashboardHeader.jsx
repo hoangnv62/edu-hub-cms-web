@@ -4,7 +4,7 @@ import {
   AppBar, Toolbar, Typography, Avatar, Box,
   Menu, MenuItem, ListItemIcon, Divider,
 } from '@mui/material';
-import { PersonOutlined, LogoutOutlined } from '@mui/icons-material';
+import { LuUser, LuLogOut } from 'react-icons/lu';
 import useAuth from '@/hooks/useAuth';
 import { PATHS } from '@/routes/paths';
 
@@ -64,13 +64,13 @@ const DashboardHeader = () => {
           sx={{ mt: 0.5 }}
         >
           <MenuItem onClick={handleProfile}>
-            <ListItemIcon><PersonOutlined fontSize="small" /></ListItemIcon>
+            <ListItemIcon><LuUser size={18} /></ListItemIcon>
             Thông tin cá nhân
           </MenuItem>
           <Divider />
           <MenuItem onClick={handleLogout} sx={{ color: 'error.main' }}>
-            <ListItemIcon>
-              <LogoutOutlined fontSize="small" sx={{ color: 'error.main' }} />
+            <ListItemIcon sx={{ color: 'error.main' }}>
+              <LuLogOut size={18} />
             </ListItemIcon>
             Đăng xuất
           </MenuItem>

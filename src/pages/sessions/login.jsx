@@ -4,7 +4,7 @@ import {
     Box, Button, Card, CardContent, Checkbox,
     FormControlLabel, IconButton, InputAdornment, Link, TextField, Typography,
 } from '@mui/material';
-import {Visibility, VisibilityOff} from '@mui/icons-material';
+import { LuEye, LuEyeOff } from 'react-icons/lu';
 import {Authority} from '@/constants/authority';
 import {PATHS} from '@/routes/paths';
 import toast from 'react-hot-toast';
@@ -66,7 +66,7 @@ const LoginPage = () => {
                             endAdornment: (
                                 <InputAdornment position="end">
                                     <IconButton onClick={() => setShowPassword((s) => !s)} edge="end" tabIndex={-1}>
-                                        {showPassword ? <VisibilityOff/> : <Visibility/>}
+                                        {showPassword ? <LuEyeOff size={20} /> : <LuEye size={20} />}
                                     </IconButton>
                                 </InputAdornment>
                             ),

@@ -4,9 +4,7 @@ import {
   Alert, Box, Button, Card, CardContent, IconButton,
   InputAdornment, Link, TextField, ToggleButton, ToggleButtonGroup, Typography,
 } from '@mui/material';
-import { Visibility, VisibilityOff } from '@mui/icons-material';
-import SchoolIcon from '@mui/icons-material/School';
-import PersonIcon from '@mui/icons-material/Person';
+import { LuEye, LuEyeOff, LuGraduationCap, LuUser } from 'react-icons/lu';
 import useAuth from '@/hooks/useAuth';
 import { Authority } from '@/constants/authority';
 import { PATHS } from '@/routes/paths';
@@ -75,10 +73,10 @@ const RegisterPage = () => {
             sx={{ mb: 1 }}
           >
             <ToggleButton value={Authority.STUDENT} sx={{ gap: 1 }}>
-              <PersonIcon fontSize="small" /> Học sinh
+              <LuUser size={18} /> Học sinh
             </ToggleButton>
             <ToggleButton value={Authority.TEACHER} sx={{ gap: 1 }}>
-              <SchoolIcon fontSize="small" /> Giáo viên
+              <LuGraduationCap size={18} /> Giáo viên
             </ToggleButton>
           </ToggleButtonGroup>
 
@@ -92,7 +90,7 @@ const RegisterPage = () => {
               endAdornment: (
                 <InputAdornment position="end">
                   <IconButton onClick={() => setShowPassword((s) => !s)} edge="end" tabIndex={-1}>
-                    {showPassword ? <VisibilityOff /> : <Visibility />}
+                    {showPassword ? <LuEyeOff size={20} /> : <LuEye size={20} />}
                   </IconButton>
                 </InputAdornment>
               ),

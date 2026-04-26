@@ -1,15 +1,13 @@
 import { Box, Button, Card, CardContent, Typography } from '@mui/material';
-import ClassIcon from '@mui/icons-material/Class';
-import AssignmentIcon from '@mui/icons-material/Assignment';
-import GradeIcon from '@mui/icons-material/Grade';
+import { LuSchool, LuClipboardList, LuStar } from 'react-icons/lu';
 import { useNavigate } from 'react-router-dom';
 import useAuth from '@/hooks/useAuth';
 import { PATHS } from '@/routes/paths';
 
 const stats = [
-  { label: 'Lớp học', value: '0', icon: <ClassIcon sx={{ fontSize: 40, color: '#1976d2' }} />, bg: '#e3f2fd' },
-  { label: 'Bài tập chờ làm', value: '0', icon: <AssignmentIcon sx={{ fontSize: 40, color: '#f57c00' }} />, bg: '#fff3e0' },
-  { label: 'Điểm trung bình', value: '--', icon: <GradeIcon sx={{ fontSize: 40, color: '#388e3c' }} />, bg: '#e8f5e9' },
+  { label: 'Lớp học', value: '0', icon: <LuSchool size={40} color="#1976d2" />, bg: '#e3f2fd' },
+  { label: 'Bài tập chờ làm', value: '0', icon: <LuClipboardList size={40} color="#f57c00" />, bg: '#fff3e0' },
+  { label: 'Điểm trung bình', value: '--', icon: <LuStar size={40} color="#388e3c" />, bg: '#e8f5e9' },
 ];
 
 const StudentDashboard = () => {
@@ -37,9 +35,9 @@ const StudentDashboard = () => {
 
       <Typography variant="h6" fontWeight="bold" mb={2}>Thao tác nhanh</Typography>
       <Box sx={{ display: 'flex', gap: 2, flexWrap: 'wrap' }}>
-        <Button variant="outlined" startIcon={<ClassIcon />} size="large" onClick={() => navigate(PATHS.STUDENT.CLASSES)}>Xem lớp học của tôi</Button>
-        <Button variant="outlined" startIcon={<AssignmentIcon />} size="large" onClick={() => navigate(PATHS.STUDENT.EXERCISES)}>Bài tập của tôi</Button>
-        <Button variant="outlined" startIcon={<GradeIcon />} size="large" onClick={() => navigate(PATHS.STUDENT.GRADES)}>Xem điểm số</Button>
+        <Button variant="outlined" startIcon={<LuSchool size={18} />} size="large" onClick={() => navigate(PATHS.STUDENT.CLASSES)}>Xem lớp học của tôi</Button>
+        <Button variant="outlined" startIcon={<LuClipboardList size={18} />} size="large" onClick={() => navigate(PATHS.STUDENT.EXERCISES)}>Bài tập của tôi</Button>
+        <Button variant="outlined" startIcon={<LuStar size={18} />} size="large" onClick={() => navigate(PATHS.STUDENT.GRADES)}>Xem điểm số</Button>
       </Box>
     </Box>
   );

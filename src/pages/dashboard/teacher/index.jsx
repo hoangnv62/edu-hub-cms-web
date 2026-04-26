@@ -1,15 +1,13 @@
 import { Box, Button, Card, CardContent, Typography } from '@mui/material';
-import ClassIcon from '@mui/icons-material/Class';
-import AssignmentIcon from '@mui/icons-material/Assignment';
-import PeopleIcon from '@mui/icons-material/People';
+import { LuSchool, LuClipboardList, LuUsers } from 'react-icons/lu';
 import { useNavigate } from 'react-router-dom';
 import useAuth from '@/hooks/useAuth';
 import { PATHS } from '@/routes/paths';
 
 const stats = [
-  { label: 'Lớp đang dạy', value: '0', icon: <ClassIcon sx={{ fontSize: 40, color: '#1976d2' }} />, bg: '#e3f2fd' },
-  { label: 'Bài tập đã tạo', value: '0', icon: <AssignmentIcon sx={{ fontSize: 40, color: '#388e3c' }} />, bg: '#e8f5e9' },
-  { label: 'Học sinh', value: '0', icon: <PeopleIcon sx={{ fontSize: 40, color: '#f57c00' }} />, bg: '#fff3e0' },
+  { label: 'Lớp đang dạy', value: '0', icon: <LuSchool size={40} color="#1976d2" />, bg: '#e3f2fd' },
+  { label: 'Bài tập đã tạo', value: '0', icon: <LuClipboardList size={40} color="#388e3c" />, bg: '#e8f5e9' },
+  { label: 'Học sinh', value: '0', icon: <LuUsers size={40} color="#f57c00" />, bg: '#fff3e0' },
 ];
 
 const TeacherDashboard = () => {
@@ -37,9 +35,9 @@ const TeacherDashboard = () => {
 
       <Typography variant="h6" fontWeight="bold" mb={2}>Thao tác nhanh</Typography>
       <Box sx={{ display: 'flex', gap: 2, flexWrap: 'wrap' }}>
-        <Button variant="outlined" startIcon={<ClassIcon />} size="large" onClick={() => navigate(PATHS.TEACHER.CLASSES)}>Quản lý lớp học</Button>
-        <Button variant="outlined" startIcon={<AssignmentIcon />} size="large" onClick={() => navigate(PATHS.TEACHER.EXERCISES)}>Tạo bài tập mới</Button>
-        <Button variant="outlined" startIcon={<PeopleIcon />} size="large" onClick={() => navigate(PATHS.TEACHER.STUDENTS)}>Danh sách học sinh</Button>
+        <Button variant="outlined" startIcon={<LuSchool size={18} />} size="large" onClick={() => navigate(PATHS.TEACHER.CLASSES)}>Quản lý lớp học</Button>
+        <Button variant="outlined" startIcon={<LuClipboardList size={18} />} size="large" onClick={() => navigate(PATHS.TEACHER.EXERCISES)}>Tạo bài tập mới</Button>
+        <Button variant="outlined" startIcon={<LuUsers size={18} />} size="large" onClick={() => navigate(PATHS.TEACHER.STUDENTS)}>Danh sách học sinh</Button>
       </Box>
     </Box>
   );

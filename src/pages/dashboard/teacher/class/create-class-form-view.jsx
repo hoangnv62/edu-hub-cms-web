@@ -6,21 +6,48 @@ import {
 import { useClassMutations } from '@/hooks/queries/class/useClassMutations';
 import { GRADE_OPTIONS } from '@/constants/grade';
 
-// initialValues: { name, grade, description } — truyền từ row khi edit, undefined khi create
+const validate = (form) => {
+  const errors = {};
+
+  if (!form.name.trim()) {
+    errors.name = 'Tên lớp không được để trống';
+  }
+
+  if (!form.gradeLevel) {
+    errors.gradeLevel = 'Vui lòng chọn khối';
+  }
+
+  return errors;
+};
+
 const CreateClassFormView = ({ open, onClose, editId, initialValues, onSuccess }) => {
   const [form, setForm] = useState({
     name: initialValues?.name ?? '',
     gradeLevel: initialValues?.grade ?? '',
     description: initialValues?.description ?? '',
   });
+  const [errors, setErrors] = useState({});
 
   const { createClass, updateClass, loading } = useClassMutations();
 
-  const handleChange = (field) => (e) =>
+  const handleChange = (field) => (e) => {
     setForm((prev) => ({ ...prev, [field]: e.target.value }));
+    if (errors[field]) setErrors((prev) => ({ ...prev, [field]: '' }));
+  };
 
   const handleSubmit = async () => {
-    const payload = { name: form.name, gradeLevel: form.gradeLevel, description: form.description };
+    const newErrors = validate(form);
+    if (Object.keys(newErrors).length > 0) {
+      setErrors(newErrors);
+      return;
+    }
+
+    const payload = {
+      name: form.name.trim(),
+      gradeLevel: form.gradeLevel,
+      description: form.description,
+    };
+
     if (editId) {
       await updateClass(editId, payload, () => { onSuccess?.(); onClose(); });
     } else {
@@ -40,6 +67,8 @@ const CreateClassFormView = ({ open, onClose, editId, initialValues, onSuccess }
             fullWidth
             required
             disabled={loading}
+            error={!!errors.name}
+            helperText={errors.name}
           />
           <TextField
             select
@@ -49,6 +78,8 @@ const CreateClassFormView = ({ open, onClose, editId, initialValues, onSuccess }
             fullWidth
             required
             disabled={loading}
+            error={!!errors.gradeLevel}
+            helperText={errors.gradeLevel}
           >
             {GRADE_OPTIONS.map((g) => (
               <MenuItem key={g.value} value={g.value}>{g.label}</MenuItem>

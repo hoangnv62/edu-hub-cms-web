@@ -15,9 +15,12 @@ Set `VITE_API_URL` in `.env` before running — the axios instance reads it as t
 
 ## Architecture
 
-**Stack**: React 19, React Router v7, MUI v9, Axios, react-hot-toast, react-icons  
+**Stack**: React 19, React Router v7, MUI v9, Axios, react-hot-toast, react-icons, dayjs, @mui/x-date-pickers  
 **Language**: JavaScript (no TypeScript)  
 **UI language**: Vietnamese throughout (error messages, labels, navigation)
+
+> See `.claude/PROJECT_STRUCTURE.md` for the full file tree and route/API map.  
+> See `.claude/RULES.md` for all coding conventions.
 
 ### Path alias
 
@@ -79,12 +82,22 @@ ui/
 
 **Form dialog pattern**: render the form conditionally (`{open && <FormView />}`) so it remounts on each open, giving a clean `useState` initializer. Pass `initialValues` from the already-fetched list row instead of re-fetching — avoids `useEffect`→`setState` anti-pattern.
 
-**Debounced search**: use `useDebounce(value, ms)` (`src/hooks/useDebounce.js`). Reset pagination to page 0 inside the event handler alongside the state setter, not in a `useEffect`.
+**Debounced search**: use `useDebounce(value, 1000)` (`src/hooks/useDebounce.js`). Reset pagination to page 0 inside the event handler alongside the state setter, not in a `useEffect`.
+
+### Date & time in forms
+
+Use **`DateTimePicker`** from `@mui/x-date-pickers` — do **not** use `type="date"` or `type="time"` inside MUI Dialogs (native browser pickers are blocked by the Dialog backdrop in some browsers).
+
+- `LocalizationProvider` (AdapterDayjs, locale `"vi"`) is configured once in `src/main.jsx`
+- Store date as **dayjs** object in form state: `dayjs(initialValues.someDate)`
+- Submit to API: `toApiDateTime(dayjsValue)` → `"yyyy-MM-dd HH:mm"`
+- Display on UI: `formatDateTime(longMs)` → `"yyyy/mm/dd hh:mm"`
+- Both utilities are in `src/utils/format-date.js`
 
 ### Shared components
 
 - `src/components/common/AppTablePagination.jsx` — reusable MUI `TablePagination` wrapper with Vietnamese labels. Props: `count`, `page`, `rowsPerPage`, `onPageChange`, `onRowsPerPageChange`.
-- `src/components/loader/TableLoadingSkeleton.jsx` — skeleton rows for table loading states.
+- `src/components/loader/TableLoadingSkeleton.jsx` — skeleton rows for table loading states. Props: `rowCount`, `colCount`.
 
 ### Icons
 
@@ -99,6 +112,9 @@ node -e "const m=require('fs').readFileSync('node_modules/react-icons/lu/index.m
 
 - `src/constants/authority.js` — `Authority.TEACHER` / `Authority.STUDENT`
 - `src/constants/grade.js` — `GRADE_OPTIONS` (array for selects) and `GRADE_LABEL` (map for display)
+- `src/constants/exercise.js` — `EXERCISE_TYPE_OPTIONS/LABEL/COLOR`, `EXERCISE_STATUS`, `EXERCISE_STATUS_LABEL/COLOR`
+
+When adding a new domain, create `src/constants/[domain].js` with `[ENTITY]_OPTIONS`, `[ENTITY]_LABEL`, `[ENTITY]_COLOR` exports.
 
 ### Layouts
 

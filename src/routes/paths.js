@@ -8,6 +8,7 @@ export const PATHS = {
     CLASSES: '/teacher/classes',
     CLASS_DETAIL: '/teacher/classes/:classId',
     EXERCISES: '/teacher/exercises',
+    EXERCISE_QUESTIONS: '/teacher/exercises/:exerciseId/questions',
     STUDENTS: '/teacher/students',
     LECTURES: '/teacher/lectures',
   },

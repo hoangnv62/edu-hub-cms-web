@@ -6,6 +6,8 @@ import {PATHS} from './paths';
 import TeacherLayout from "@/layouts/DashboardLayout/TeacherLayout.jsx";
 import ClassDashboard from "@/pages/dashboard/teacher/class/class-dashboard.jsx";
 import ClassDetailDashboard from "@/pages/dashboard/teacher/class/class-detail-dashboard.jsx";
+import ExerciseDashboard from "@/pages/dashboard/teacher/exercise/exercise-dashboard.jsx";
+import ExerciseQuestionsDashboard from "@/pages/dashboard/teacher/exercise/exercise-questions-dashboard.jsx";
 
 export const teacherRoutes = {
     element: createElement(RoleGuard, {allowedRole: Authority.TEACHER}),
@@ -24,7 +26,15 @@ export const teacherRoutes = {
                 {
                     path: PATHS.TEACHER.CLASS_DETAIL,
                     element: createElement(ClassDetailDashboard)
-                }
+                },
+                {
+                    path: PATHS.TEACHER.EXERCISES,
+                    element: createElement(ExerciseDashboard)
+                },
+                {
+                    path: PATHS.TEACHER.EXERCISE_QUESTIONS,
+                    element: createElement(ExerciseQuestionsDashboard)
+                },
             ],
         },
     ],

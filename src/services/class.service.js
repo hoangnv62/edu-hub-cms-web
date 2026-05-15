@@ -21,5 +21,17 @@ export const classService = {
     updateClass: async (id, body) => {
         const response = await axiosInstance.put(`/classes/${id}`, body);
         return response.data;
-    }
+    },
+    getClassStudents: async (classId, params = {}) => {
+        const response = await axiosInstance.get(`/classes/${classId}/students`, { params });
+        return response.data;
+    },
+    addStudentToClass: async (classId, studentId) => {
+        const response = await axiosInstance.post(`/classes/${classId}/students`, { studentId });
+        return response.data;
+    },
+    removeStudentFromClass: async (classId, studentId) => {
+        const response = await axiosInstance.delete(`/classes/${classId}/students/${studentId}`);
+        return response.data;
+    },
 }
